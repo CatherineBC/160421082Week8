@@ -2,6 +2,7 @@ package com.ubaya.todoapp.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.ubaya.todoapp.databinding.TodoItemLayoutBinding
 import com.ubaya.todoapp.model.Todo
@@ -31,6 +32,14 @@ class TodoListAdapter(val todoList:ArrayList<Todo>, val adapterOnClick : (Todo) 
             }
 
         }
+
+        holder.binding.imageView2.setOnClickListener {
+            val action =
+                ToDoListFragmentDirections.actionEditFragment(todoList[position].uuid)
+
+            Navigation.findNavController(it).navigate(action)
+        }
+
     }
 
 
