@@ -29,7 +29,6 @@ class ListTodoViewModel(application: Application)
         todoLoadErrorLD.value = false
         launch {
             val db = buildDb(getApplication())
-
             todoLD.postValue(db.todoDao().selectAllTodo())
             loadingLD.postValue(false)
         }
@@ -38,8 +37,7 @@ class ListTodoViewModel(application: Application)
     fun clearTask(todo: Todo) {
         launch {
             val db = buildDb(getApplication())
-            db.todoDao().deleteTodo(todo)
-
+            db.todoDao().markTodoAsDone(todo.uuid)
             todoLD.postValue(db.todoDao().selectAllTodo())
         }
     }
